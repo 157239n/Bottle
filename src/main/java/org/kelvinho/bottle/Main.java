@@ -17,10 +17,7 @@ public class Main extends PApplet {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            System.out.println("can't find look and feel");
-            e.printStackTrace();
-            return;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ignored) {
         }
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -29,7 +26,7 @@ public class Main extends PApplet {
             return;
         }
         String folder = chooser.getSelectedFile().getAbsolutePath();
-        // check whether the data file has the origin folder
+        // check whether the data file has the "original" folder
         if (!new File(folder + File.separator + "/original").exists()) {
             JOptionPane.showMessageDialog(null, "There's supposed to be a folder called \"original\" with a bunch of images under " + folder + ". Check everything and try again", "No images found", JOptionPane.ERROR_MESSAGE);
             return;
